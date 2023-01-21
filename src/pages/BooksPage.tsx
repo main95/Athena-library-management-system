@@ -7,6 +7,7 @@ import {
   Container,
   IconButton,
   MenuItem,
+  Paper,
   Popover,
   Stack,
   Table,
@@ -150,6 +151,7 @@ const BooksPage: React.FC = () => {
 
   const filteredBooks: Book[] = applySortFilter(BooksMock, getComparator(order, orderBy), filterName)
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - BooksMock.length) : 0
+  const isNotFound = !filteredBooks.length && !!filterName
 
   console.log('emptyRows: ', emptyRows)
 
@@ -245,7 +247,7 @@ const BooksPage: React.FC = () => {
                   )}
                 </TableBody>
 
-                {/* {isNotFound && (
+                {isNotFound && (
                   <TableBody>
                     <TableRow>
                       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
@@ -267,7 +269,7 @@ const BooksPage: React.FC = () => {
                       </TableCell>
                     </TableRow>
                   </TableBody>
-                )} */}
+                )}
               </Table>
             </TableContainer>
           </Scrollbar>
