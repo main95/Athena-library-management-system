@@ -22,9 +22,6 @@ const Scrollbar: React.FC<Props> = ({ children, sx }) => {
 
   return (
     <StyledRootScrollbar>
-      {/* <StyledScrollbar clickOnTrack={false} sx={sx}>
-        {children}
-      </StyledScrollbar> */}
       <div>
         {children}
       </div>
