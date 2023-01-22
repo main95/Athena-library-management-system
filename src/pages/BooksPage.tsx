@@ -4,6 +4,7 @@ import {
   Button,
   Card,
   Checkbox,
+  Chip,
   Container,
   IconButton,
   MenuItem,
@@ -42,10 +43,10 @@ const visuallyHidden = {
 }
 
 const TABLE_HEAD: BooksTableHeader[] = [
-  { _id: 'title', label: 'Name', alignRight: false },
-  { _id: 'authorName', label: 'Company', alignRight: false },
-  { _id: 'type', label: 'Role', alignRight: false },
-  { _id: 'type', label: 'Verified', alignRight: false },
+  { _id: 'title', label: 'Title', alignRight: false },
+  { _id: 'authorSurname', label: 'Author', alignRight: false },
+  { _id: 'type', label: 'Type', alignRight: false },
+  { _id: 'status', label: 'Status', alignRight: false },
   { _id: 'status', label: 'Status', alignRight: false },
   { _id: '' },
 ]
@@ -86,7 +87,7 @@ const BooksPage: React.FC = () => {
   const [page, setPage] = useState<number>(0)
   const [selected, setSelected] = useState<string[]>([])
   const [order, setOrder] = useState<'asc' | 'desc'>('asc')
-  const [orderBy, setOrderBy] = useState<keyof Book | ''>('title')
+  const [orderBy, setOrderBy] = useState<keyof Book | ''>('')
   const [filterName, setFilterName] = useState('')
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
@@ -226,7 +227,12 @@ const BooksPage: React.FC = () => {
 
                         <TableCell align="left">{type}</TableCell>
 
-                        <TableCell align="left">{status}</TableCell>
+                        <TableCell align="left">
+                          <Chip
+                            label={status === 'in' ? 'Available' : 'Not available'}
+                            color={status === 'in' ? 'success' : 'error'}
+                          />
+                        </TableCell>
 
                         <TableCell align="left">
                           <Label color={(status === 'out' && 'error') || 'success'}>{sentenceCase(status)}</Label>
