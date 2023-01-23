@@ -105,7 +105,7 @@ const BooksPage: React.FC = () => {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = BooksMock.map((n) => n._id)
+      const newSelecteds = BooksMock.map((n) => n.id)
       setSelected(newSelecteds)
       return
     }
@@ -163,7 +163,7 @@ const BooksPage: React.FC = () => {
     dispatch(booksActions.getBooksAction())
   }, [dispatch])
 
-  const filteredBooks: Book[] = applySortFilter(BooksMock, getComparator(order, orderBy), filterName)
+  const filteredBooks: Book[] = applySortFilter(books, getComparator(order, orderBy), filterName)
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - BooksMock.length) : 0
   const isNotFound = !filteredBooks.length && !!filterName
 
@@ -219,13 +219,13 @@ const BooksPage: React.FC = () => {
                 </TableHead>
                 <TableBody>
                   {filteredBooks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((book) => {
-                    const { _id, title, type, status, authorName, authorSurname } = book
-                    const selectedUser = selected.indexOf(_id) !== -1
+                    const { id, title, type, status, authorName, authorSurname } = book
+                    const selectedUser = selected.indexOf(id) !== -1
 
                     return (
-                      <TableRow hover key={_id} tabIndex={-1} role="checkbox" selected={selectedUser}>
+                      <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, _id)} />
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, id)} />
                         </TableCell>
 
                         <TableCell component="th" scope="row" padding="none">

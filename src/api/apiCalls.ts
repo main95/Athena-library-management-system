@@ -3,7 +3,7 @@ import { Book } from '../types/Books'
 import { fetchJson } from '../utils/fetchJson'
 
 export const getBooksApi = () =>
-	fetchJson<any>(
+	fetchJson(
 		`${config.apiUrl}/${config.routes.book}/getBooks`,
 		{},
 	)

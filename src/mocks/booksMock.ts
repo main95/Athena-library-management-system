@@ -2,7 +2,7 @@ import { Book } from '../types/Books'
 
 export const BooksMock: Book[] = [
   {
-    _id: '0000',
+    id: '0000',
     title: 'La compagnia dell\'anello',
     status: 'in',
     type: 'fiction',
@@ -10,7 +10,7 @@ export const BooksMock: Book[] = [
     authorSurname: 'Tolkien',
   },
   {
-    _id: '0001',
+    id: '0001',
     title: 'Le due torri',
     status: 'in',
     type: 'fiction',
@@ -18,7 +18,7 @@ export const BooksMock: Book[] = [
     authorSurname: 'Tolkien',
   },
   {
-    _id: '0002',
+    id: '0002',
     title: 'Il ritorno del re',
     status: 'out',
     type: 'fiction',
@@ -26,7 +26,7 @@ export const BooksMock: Book[] = [
     authorSurname: 'Tolkien',
   },
   {
-    _id: '0003',
+    id: '0003',
     title: 'Lo hobbit',
     status: 'in',
     type: 'fiction',
@@ -34,7 +34,7 @@ export const BooksMock: Book[] = [
     authorSurname: 'Tolkien',
   },
   {
-    _id: '0004',
+    id: '0004',
     title: 'Il silmarillion',
     status: 'in',
     type: 'fiction',
@@ -42,7 +42,7 @@ export const BooksMock: Book[] = [
     authorSurname: 'Tolkien',
   },
   {
-    _id: '0005',
+    id: '0005',
     title: 'Il signore degli anelli',
     status: 'in',
     type: 'fiction',

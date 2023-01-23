@@ -3,7 +3,7 @@ export type BookStatus = 'in'| 'out'
 export type BookType = 'fiction' | 'nonFiction'
 
 export type Book = {
-  _id: string,
+  id: string,
   title: string,
   status: BookStatus,
   type: BookType,

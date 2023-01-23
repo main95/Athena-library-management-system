@@ -94,7 +94,7 @@ export const fetchJson = <T = void>(
 			),
 		)
 		.then(res => {
-			return res
+			return res.json()
 		})
 		.catch((error: unknown) => {
 			return error as any
