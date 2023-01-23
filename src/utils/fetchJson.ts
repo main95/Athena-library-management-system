@@ -1,4 +1,4 @@
-import { ErrorOrigin, HttpError, HttpErrorCode } from '../types/model'
+import { HttpError, HttpErrorCode } from '../types/model'
 
 export const isHttpError = (error: unknown): error is HttpError =>
 	typeof error === 'object' &&
@@ -9,7 +9,6 @@ export const isHttpError = (error: unknown): error is HttpError =>
 	'origin' in error &&
 	'externalUrl' in error
 
-const isJsError = (error: unknown): error is Error => error instanceof Error
 
 const decodeStatus = (status: string | number): HttpErrorCode => {
 	const statusNumber = Number(status)
@@ -24,19 +23,6 @@ const decodeStatus = (status: string | number): HttpErrorCode => {
 			return statusNumber
 		default:
 			return 500
-	}
-}
-
-const decodeOrigin = (origin: string | undefined): ErrorOrigin => {
-	switch (origin) {
-		case 'internal-api':
-		case 'internal-ui':
-		case 'external':
-		case 'WCS':
-		case 'unknown':
-			return origin
-		default:
-			return 'unknown'
 	}
 }
 

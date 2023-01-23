@@ -21,7 +21,7 @@ import {
   TableSortLabel,
   Typography,
 } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Iconify from '../components/iconify'
 import Scrollbar from '../components/scrollbar'
 import { BooksMock } from '../mocks/booksMock'
@@ -29,6 +29,12 @@ import { Book, BooksTableHeader } from '../types/Books'
 import { sentenceCase } from 'change-case'
 import { filter } from 'lodash'
 import { UserListToolbar } from '../components/user-list-toolbar'
+import { useDispatch, useSelector } from 'react-redux'
+import booksActions from '../features/book/actions'
+import { ThunkDispatch } from 'redux-thunk'
+import { RootState } from '../app/store'
+import { Action } from 'redux'
+import { selectBooks } from '../features/book/selectors'
 
 const visuallyHidden = {
   border: 0,
@@ -83,6 +89,7 @@ function applySortFilter(array: Book[], comparator: (value1: Book, value2: Book)
 }
 
 const BooksPage: React.FC = () => {
+  const dispatch: ThunkDispatch<RootState, unknown, Action<string>> = useDispatch()
   const [open, setOpen] = useState<Element | null>(null)
   const [page, setPage] = useState<number>(0)
   const [selected, setSelected] = useState<string[]>([])
@@ -90,6 +97,8 @@ const BooksPage: React.FC = () => {
   const [orderBy, setOrderBy] = useState<keyof Book | ''>('')
   const [filterName, setFilterName] = useState('')
   const [rowsPerPage, setRowsPerPage] = useState(5)
+
+  const books = useSelector(selectBooks)
 
   const numSelected = selected.length
   const rowCount = BooksMock.length
@@ -149,6 +158,10 @@ const BooksPage: React.FC = () => {
     setPage(0)
     setFilterName(event.target.value)
   }
+
+  useEffect(() => {
+    dispatch(booksActions.getBooksAction())
+  }, [dispatch])
 
   const filteredBooks: Book[] = applySortFilter(BooksMock, getComparator(order, orderBy), filterName)
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - BooksMock.length) : 0

@@ -1,4 +1,6 @@
 import { styled } from '@mui/material'
+import { Provider } from 'react-redux'
+import { store } from './app/store'
 import Routes from './Routes'
 
 const StyledRoot = styled('div')({
@@ -8,7 +10,9 @@ const StyledRoot = styled('div')({
 function App() {
   return (
     <StyledRoot>
-      <Routes />
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     </StyledRoot>
   )
 }

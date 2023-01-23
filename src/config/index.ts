@@ -1,7 +1,7 @@
 const config: Record<string, any> = {
-  apiUrl: '',
+  apiUrl: 'http://localhost:4000/v1',
   routes: {
-    book: 'book'
+    book: 'books'
   }
 }
 
