@@ -16,3 +16,8 @@ export type BooksTableHeader = {
   label?: string,
   alignRight?: boolean
 }
+
+export type BooksState = {
+  books: Book[],
+  currentBook: Book | undefined,
+}
