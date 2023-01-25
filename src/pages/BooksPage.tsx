@@ -24,7 +24,6 @@ import {
 import { useEffect, useState } from 'react'
 import Iconify from '../components/iconify'
 import Scrollbar from '../components/scrollbar'
-import { BooksMock } from '../mocks/booksMock'
 import { Book, BooksTableHeader } from '../types/Books'
 import { sentenceCase } from 'change-case'
 import { filter } from 'lodash'
@@ -101,11 +100,11 @@ const BooksPage: React.FC = () => {
   const books = useSelector(selectBooks)
 
   const numSelected = selected.length
-  const rowCount = BooksMock.length
+  const rowCount = books.length
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = BooksMock.map((n) => n.id)
+      const newSelecteds = books.map((n) => n.id)
       setSelected(newSelecteds)
       return
     }
@@ -164,7 +163,7 @@ const BooksPage: React.FC = () => {
   }, [dispatch])
 
   const filteredBooks: Book[] = applySortFilter(books, getComparator(order, orderBy), filterName)
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - BooksMock.length) : 0
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - books.length) : 0
   const isNotFound = !filteredBooks.length && !!filterName
 
   console.log('emptyRows: ', emptyRows)
@@ -296,7 +295,7 @@ const BooksPage: React.FC = () => {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={BooksMock.length}
+            count={books.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
