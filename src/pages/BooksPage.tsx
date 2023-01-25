@@ -1,7 +1,6 @@
 import { Label } from '@mui/icons-material'
 import {
   Box,
-  Button,
   Card,
   Checkbox,
   Chip,
@@ -34,6 +33,8 @@ import { ThunkDispatch } from 'redux-thunk'
 import { RootState } from '../app/store'
 import { Action } from 'redux'
 import { selectBooks } from '../features/book/selectors'
+import { StyledCommonPageWrapper } from '../components/common/CommonComponents'
+import { Link } from 'react-router-dom'
 
 const visuallyHidden = {
   border: 0,
@@ -169,15 +170,15 @@ const BooksPage: React.FC = () => {
   console.log('emptyRows: ', emptyRows)
 
   return (
-    <div>
+    <StyledCommonPageWrapper>
       <Container disableGutters={false}>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             Books
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Book
-          </Button>
+          <Link to={'new-book'}>
+            New book
+          </Link>
         </Stack>
 
         <Card>
@@ -332,7 +333,7 @@ const BooksPage: React.FC = () => {
           Delete
         </MenuItem>
       </Popover>
-    </div>
+    </StyledCommonPageWrapper>
   )
 }
 

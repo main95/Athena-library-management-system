@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import DashboardLayout from './layouts/dashboard'
 import BooksPage from './pages/BooksPage'
+import NewBookPage from './pages/NewBookPage'
 
 const router = createBrowserRouter([
   {
@@ -9,6 +10,7 @@ const router = createBrowserRouter([
     children: [
       { element: <Navigate to="/dashboard/books" />, index: true },
       { path: 'books', element: <BooksPage /> },
+      { path: 'books/new-book', element: <NewBookPage /> },
       { path: 'authors', element: <div>Authors page</div> },
       { path: 'users', element: <div>Users page</div> },
     ],

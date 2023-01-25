@@ -6,6 +6,7 @@ import theme from './theme'
 
 const StyledRoot = styled('div')({
   fontFamily: 'Helvetica, Arial, sans-serif',
+  minHeight: '100vh',
 })
 
 function App() {
